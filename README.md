@@ -24,7 +24,7 @@ OPERA related files and code will be stored here for version control and test pu
 
 ### Base
 
-- Base Changes Index.xlsx
+- [Base Changes Index.xlsx](\\Base\\Base%20Changes%20Index.xlsx)
 - Add Zero Production Count.docx
 - Auto Start or End WO on Equipment.docx
 - Configure MODBUS TCP for Smart Meter.docx
