@@ -23,4 +23,16 @@ OPERA related files and code will be stored here for version control and test pu
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest)
 
 ### Base
+
+- Base Changes Index.xlsx
+- Add Zero Production Count.docx
+- Auto Start or End WO on Equipment.docx
+- Configure MODBUS TCP for Smart Meter.docx
+- Enhanced Logout Reminder Logic on Shift Change.docx
+- New Batch Code Logic.docx
+- Quick Selection of Downtime.docx
+- Synchronize Equipment Counter with Line During End Job.docx
+- TF Physical Check and Configuration.docx
+
+
 ### Plus
