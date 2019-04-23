@@ -22,6 +22,25 @@ OPERA related files and code will be stored here for version control and test pu
 ## Documentation
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest)
 
+The file structure is as below.
+```
+OPERA
+│ ─ .gitignore
+│ ─ README.md
+│
+└ ─Base
+      | ─ Add Zero Production Count.docx
+      | ─ Auto Start or End WO on Equipment.docx
+      | ─ Base Changes Index.xlsx
+      | ─ Configure MODBUS TCP for Smart Meter.docx
+      | ─ Enhanced Logout Reminder Logic on Shift Change.docx
+      | ─ New Batch Code Logic.docx
+      | ─ Quick Selection of Downtime.docx
+      | ─ Synchronize Equipment Counter with Line During End Job.docx
+      | ─ TF Physical Check and Configuration.docx
+
+```
+
 ### Base
 
 - [Base Changes Index.xlsx](./Base/Base%20Changes%20Index.xlsx)
