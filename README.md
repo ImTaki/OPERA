@@ -25,14 +25,14 @@ OPERA related files and code will be stored here for version control and test pu
 ### Base
 
 - [Base Changes Index.xlsx](./Base/Base%20Changes%20Index.xlsx)
-- Add Zero Production Count.docx
-- Auto Start or End WO on Equipment.docx
-- Configure MODBUS TCP for Smart Meter.docx
-- Enhanced Logout Reminder Logic on Shift Change.docx
-- New Batch Code Logic.docx
-- Quick Selection of Downtime.docx
-- Synchronize Equipment Counter with Line During End Job.docx
-- TF Physical Check and Configuration.docx
+- [Add Zero Production Count.docx](./Base/Add%20Zero%20Production%20Count.docx)
+- [Auto Start or End WO on Equipment.docx](./Base/Auto%20Start%20or%20End%20WO%20on%20Equipment.docx)
+- [Configure MODBUS TCP for Smart Meter.docx](./Base/Configure%20MODBUS%20TCP%20for%20Smart%20Meter.docx)
+- [Enhanced Logout Reminder Logic on Shift Change.docx](./Base/Enhanced%20Logout%20Reminder%20Logic%20on%20Shift%20Change.docx)
+- [New Batch Code Logic.docx](./Base/New%20Batch%20Code%20Logic.docx)
+- [Quick Selection of Downtime.docx](./Base/Quick%20Selection%20of%20Downtime.docx)
+- [Synchronize Equipment Counter with Line During End Job.docx](./Base/Synchronize%20Equipment%20Counter%20with%20Line%20During%20End%20Job.docx)
+- [TF Physical Check and Configuration.docx](./Base/TF%20Physical%20Check%20and%20Configuration.docx)
 
 
 ### Plus
