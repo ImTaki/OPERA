@@ -27,8 +27,8 @@ The file structure is as below.
 ```
 OPERA
     │ ─ .gitignore
-    │ ─ README.md
-    │
+    │ ─ docs
+    | ─ README.md
     └ ─ Base
             | ─ Add Zero Production Count.docx
             | ─ Auto Start or End WO on Equipment.docx
