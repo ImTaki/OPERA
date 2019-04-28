@@ -170,6 +170,7 @@ SELECT * From job_exec WHERE cur_wo_id = '000102087677'
 
 SELECT * FROM attr WHERE attr_desc LIKE '%Prod_Rate_FCS%'
 
+-- Select Entity Attribute
 SELECT ent.ent_name, attr.attr_desc, ent_attr.attr_value
 FROM ent,
      ent_attr,
