@@ -4,8 +4,8 @@ USE MESDB
 -- Module Name			-   SQL Server @ SQL1
 -- Description			-	Some useful statement can quick solve issues
 -- Author				-	Taki Guan
--- Date Created			-	02/02/2012
--- Version				-   4.0.0
+-- Date Created			-	2019-4-28
+-- Version				-   1.0.0
 --
 -- Copyright (C) 2019 Colgate Sanxiao Inc.  All rights reserved.
 --
