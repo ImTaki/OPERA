@@ -57,7 +57,7 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-04-19 00:00:00' ORDER BY wo_id-- OR last_edit_at < '2019-04-15 00:00:00'
 
-SELECT * FROM wo WHERE wo_id IN ('000102142082')
+SELECT * FROM wo WHERE wo_id IN ('000102148412')
 
 SELECT * FROM wo WHERE wo_id LIKE '%4446' AND item_id LIKE '%6611'
 
@@ -73,7 +73,7 @@ SELECT * FROM ngsfr_subr_production_order WHERE order_number = '000102103715'
 
 SELECT * FROM  job_state;
 
-SELECT * FROM job WHERE wo_id IN ('000102143695') AND run_ent_id IN (171, 174)-- , '000101972007')
+SELECT * FROM job WHERE wo_id IN ('000102148514')
 
 SELECT * FROM job WHERE act_start_time_local >= '2019-4-22 00:00:00' AND act_start_time_local <= '2019-4-22 08:00:00' AND run_ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'T2BH0204')
 
@@ -86,7 +86,7 @@ SELECT * FROM job WHERE item_id LIKE '%183902038'
 
 -- Item Produced, Job Event and TPM Stat Section
 
-SELECT * FROM item_prod WHERE wo_id LIKE '%101810613'
+SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
@@ -102,7 +102,7 @@ SELECT * FROM job_event WHERE wo_id = '000102109761' AND event_type = 'JobStateC
 
 SELECT * FROM job_event WHERE wo_id = '000102143695' AND ent_id IN (171, 174) AND event_time_local >= '2019-4-24 14:00:00' AND event_time_local < '2019-4-24 15:00:00' ORDER BY row_id DESC-- AND event_type = 'JobStateChanged'
 
-SELECT * FROM job_event WHERE wo_id = '000102139835' ORDER BY row_id DESC
+SELECT event_time_local, seq_no, event_type, value1, quantity FROM job_event WHERE wo_id = '000102148685' ORDER BY row_id
 
 SELECT * FROM tpm_stat WHERE wo_id = '000101721575'
 
@@ -115,7 +115,7 @@ SELECT * FROM tpm_stat WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name I
 
 -- ===============================================================================================================================================================================
 
-SELECT * FROM job_exec WHERE ent_id = 134
+SELECT ent_id, cur_wo_id, cur_oper_id, cur_seq_no FROM job_exec WHERE ent_id IN (128, 129)
 
 SELECT ent_id, ent_name FROM ent WHERE ent_id BETWEEN 175 AND  179
 
