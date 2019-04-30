@@ -199,7 +199,7 @@ SELECT * FROM data_log_value WHERE grp_id = 67
 
 SELECT shift_start_local [Shift], raw_reas_cd [Reason], duration/3600.00 [Hour], category2 [DESC]FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS952') AND shift_start_local = '2019-03-28 08:00:00' ORDER BY event_time_local
 
-SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS952') AND shift_start_local = '2019-03-28 08:00:00' ORDER BY event_time_local
+SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'T2BH0202_END') AND shift_start_local = '2019-04-24 08:00:00' ORDER BY event_time_local
 
 -- SELECT * FROM job_util_log_link;
 
