@@ -57,7 +57,7 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-04-19 00:00:00' ORDER BY wo_id-- OR last_edit_at < '2019-04-15 00:00:00'
 
-SELECT * FROM wo WHERE wo_id IN ('000102148412')
+SELECT * FROM wo WHERE wo_id IN ('000102148766')
 
 SELECT * FROM wo WHERE wo_id LIKE '%4446' AND item_id LIKE '%6611'
 
@@ -73,7 +73,7 @@ SELECT * FROM ngsfr_subr_production_order WHERE order_number = '000102103715'
 
 SELECT * FROM  job_state;
 
-SELECT * FROM job WHERE wo_id IN ('000102148514')
+SELECT * FROM job WHERE wo_id IN ('000102148766')
 
 SELECT * FROM job WHERE act_start_time_local >= '2019-4-22 00:00:00' AND act_start_time_local <= '2019-4-22 08:00:00' AND run_ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'T2BH0204')
 
@@ -199,7 +199,7 @@ SELECT * FROM data_log_value WHERE grp_id = 67
 
 SELECT shift_start_local [Shift], raw_reas_cd [Reason], duration/3600.00 [Hour], category2 [DESC]FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS952') AND shift_start_local = '2019-03-28 08:00:00' ORDER BY event_time_local
 
-SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'T2BH0202_END') AND shift_start_local = '2019-04-24 08:00:00' ORDER BY event_time_local
+SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS604') AND shift_start_local = '2019-05-04 08:00:00' ORDER BY event_time_local
 
 -- SELECT * FROM job_util_log_link;
 
