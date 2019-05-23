@@ -14,7 +14,7 @@ OPERA related files and code will be stored here for version control and test pu
    * [OPERA](#OPERA)
       * [Documentation](#Documentation)
          * [Base](#Base)
-         * [Plus](#Plus)    
+         * [Plus](#Plus)
 
 </details>
 
@@ -25,7 +25,7 @@ OPERA related files and code will be stored here for version control and test pu
 
 The file structure is as below.
 
-```
+```bat
 OPERA
     │ ─ .gitignore
     │ ─ docs
