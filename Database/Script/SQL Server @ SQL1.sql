@@ -55,7 +55,7 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 -- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-04-19 00:00:00'
 
-SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-04-19 00:00:00' ORDER BY wo_id-- OR last_edit_at < '2019-04-15 00:00:00'
+SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-05-20 00:00:00' ORDER BY wo_id-- OR last_edit_at < '2019-04-15 00:00:00'
 
 SELECT * FROM wo WHERE wo_id IN ('000102148766')
 
@@ -73,7 +73,7 @@ SELECT * FROM ngsfr_subr_production_order WHERE order_number = '000102103715'
 
 SELECT * FROM  job_state;
 
-SELECT * FROM job WHERE wo_id IN ('000102148766')
+SELECT * FROM job WHERE wo_id IN ('000102179023')
 
 SELECT * FROM job WHERE act_start_time_local >= '2019-4-22 00:00:00' AND act_start_time_local <= '2019-4-22 08:00:00' AND run_ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'T2BH0204')
 
@@ -90,7 +90,7 @@ SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
-SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0208_END', 'T2BH0208')) AND good_prod = 1 AND wo_id = '000102143695' AND shift_start_local = '2019-04-24 08:00:00' ORDER BY  row_id DESC
+SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0203_END', 'T2BH0203')) AND good_prod = 1 AND wo_id = '000102179023' AND shift_start_local = '2019-05-20 08:00:00' ORDER BY  row_id DESC
 
 SELECT * FROM item_prod WHERE ent_id IN (140) AND good_prod = 1 AND shift_start_local = '2019-04-24 08:00:00' AND wo_id = '000102143913' ORDER BY  row_id DESC
 
@@ -204,3 +204,6 @@ SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = '
 -- SELECT * FROM job_util_log_link;
 
 -- ===============================================================================================================================================================================
+
+-- Check Heart Beat for MES Service
+select DATEDIFF(SECOND, last_heartbeat, GETUTCDATE()) HeartBeatDiff from sessn where client_type = 53
