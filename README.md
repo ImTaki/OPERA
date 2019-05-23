@@ -7,6 +7,7 @@
 OPERA related files and code will be stored here for version control and test purpose.
 
 <details>
+
 <summary>Table of Content</summary>
 
 ## Table of Content
@@ -31,11 +32,13 @@ OPERA
     | ─ README.md
     └ ─ Base
             | ─ Add Zero Production Count.docx
+            | ─ Auto Assign SKU to Category when PO Imported.docx
             | ─ Auto Start or End WO on Equipment.docx
             | ─ Base Changes Index.xlsx
             | ─ Configure MODBUS TCP for Smart Meter.docx
             | ─ Enhanced Logout Reminder Logic on Shift Change.docx
             | ─ New Batch Code Logic.docx
+            | ─ Notification for EOHS Input Inspection.docx
             | ─ Quick Selection of Downtime.docx
             | ─ Synchronize Equipment Counter with Line During End Job.docx
             └ ─ TF Physical Check and Configuration.docx
