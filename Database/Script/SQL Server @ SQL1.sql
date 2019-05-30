@@ -53,9 +53,9 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 -- Work Order Section
 
--- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-04-19 00:00:00'
+-- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-05-25 00:00:00'
 
-SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 1 AND req_finish_time_local < '2019-05-20 00:00:00' ORDER BY wo_id-- OR last_edit_at < '2019-04-15 00:00:00'
+SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-05-25 00:00:00' ORDER BY wo_id
 
 SELECT * FROM wo WHERE wo_id IN ('000102148766')
 
@@ -90,7 +90,7 @@ SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
-SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0203_END', 'T2BH0203')) AND good_prod = 1 AND wo_id = '000102179023' AND shift_start_local = '2019-05-20 08:00:00' ORDER BY  row_id DESC
+SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0210')) AND good_prod = 1 AND wo_id = '000102195781' AND shift_start_local = '2019-05-29 16:00:00' ORDER BY  row_id DESC
 
 SELECT * FROM item_prod WHERE ent_id IN (140) AND good_prod = 1 AND shift_start_local = '2019-04-24 08:00:00' AND wo_id = '000102143913' ORDER BY  row_id DESC
 
@@ -100,13 +100,13 @@ SELECT * FROM item_prod WHERE ent_id = 161 AND shift_start_local = '2019-04-24 0
 
 SELECT * FROM job_event WHERE wo_id = '000102109761' AND event_type = 'JobStateChanged' AND ent_id = 162 ORDER BY row_id;
 
-SELECT * FROM job_event WHERE wo_id = '000102143695' AND ent_id IN (171, 174) AND event_time_local >= '2019-4-24 14:00:00' AND event_time_local < '2019-4-24 15:00:00' ORDER BY row_id DESC-- AND event_type = 'JobStateChanged'
+SELECT * FROM job_event WHERE wo_id = '000102195781' AND ent_id IN (140,141) AND event_time_local >= '2019-5-29 16:00:00' AND event_time_local < '2019-5-30 00:00:00' ORDER BY row_id DESC-- AND event_type = 'JobStateChanged'
 
 SELECT event_time_local, seq_no, event_type, value1, quantity FROM job_event WHERE wo_id = '000102148685' ORDER BY row_id
 
 SELECT * FROM tpm_stat WHERE wo_id = '000101721575'
 
-SELECT * FROM tpm_stat WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0210_END', 'T2BH0210')) AND wo_id = '000102143913' AND shift_start_local = '2019-04-24 08:00:00' ORDER BY last_edit_at DESC
+SELECT * FROM tpm_stat WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0210')) AND wo_id = '000102195781' AND shift_start_local = '2019-05-29 16:00:00' ORDER BY last_edit_at DESC
 
 -- SELECT * FROM tpm_stat WHERE item_id LIKE '%183902038'
 
@@ -206,4 +206,4 @@ SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = '
 -- ===============================================================================================================================================================================
 
 -- Check Heart Beat for MES Service
-select DATEDIFF(SECOND, last_heartbeat, GETUTCDATE()) HeartBeatDiff from sessn where client_type = 53
+SELECT DATEDIFF(SECOND, last_heartbeat, GETUTCDATE()) HeartBeatDiff from sessn where client_type = 53
