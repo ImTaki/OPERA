@@ -24,24 +24,24 @@ USE MESDB
 
 -- UPDATE ngsfr_subr_bom SET intf_process_status = 0 WHERE intf_process_status = -1
 
-SELECT * FROM item WHERE item_id = 'C0000007162' -- BETWEEN 'C0000007312' AND 'C0000007315'
+SELECT * FROM item WHERE item_id = 'C0000007310' -- BETWEEN 'C0000007312' AND 'C0000007315'
 
-SELECT * FROM ngsfr_subr_material_master WHERE matl_number BETWEEN 'C0000007312' AND 'C0000007315'
+SELECT * FROM ngsfr_subr_material_master WHERE matl_number = 'C0000007310'
 
 SELECT * FROM ngsfr_subr_material_master WHERE intf_process_status = 0
 
-SELECT * FROM bom_item WHERE parent_item_id = 'C0000007242'
+SELECT * FROM bom_item WHERE parent_item_id = 'C0000007313'
 
 SELECT DISTINCT item_id FROM bom_item bi WHERE bi.item_id LIKE 'C%' and bi.item_id NOT IN (SELECT DISTINCT parent_item_id FROM bom_item)
 
-SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000007242'
+SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000007309'
 
 -- Get All SKUs don't have BOM item
 SELECT DISTINCT bom_item FROM ngsfr_subr_bom sb WHERE sb.bom_item LIKE 'C%' and sb.bom_item NOT IN (SELECT DISTINCT bom_parent_item FROM ngsfr_subr_bom)
 
 SELECT bom_parent_item, bom_item,start_eff, * FROM ngsfr_subr_bom WHERE start_eff > GETDATE()
 
-SELECT * FROM bom_ver WHERE parent_item_id = 'C0000006602'
+SELECT * FROM bom_ver WHERE parent_item_id = 'C0000007312'
 
 -- UPDATE ngsfr_subr_bom SET intf_process_status = 0 WHERE intf_process_status = 1
 
@@ -57,7 +57,7 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-05-25 00:00:00' ORDER BY wo_id
 
-SELECT * FROM wo WHERE wo_id IN ('000102148766')
+SELECT * FROM wo WHERE wo_id IN ('00010223936')
 
 SELECT * FROM wo WHERE wo_id LIKE '%4446' AND item_id LIKE '%6611'
 
@@ -65,7 +65,7 @@ SELECT * FROM wo WHERE item_id = 'C0000006606' AND last_edit_at >= '2018-05-15'
 
 SELECT * FROM wo WHERE item_id = 'C0000007314'
 
-SELECT * FROM ngsfr_subr_production_order WHERE order_number = '000102103715'
+SELECT * FROM ngsfr_subr_production_order WHERE order_number = '00010223936'
 
 -- ===============================================================================================================================================================================
 
@@ -90,7 +90,7 @@ SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
-SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0210')) AND good_prod = 1 AND wo_id = '000102195781' AND shift_start_local = '2019-05-29 16:00:00' ORDER BY  row_id DESC
+SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('H2FCS604') ) AND good_prod = 1 AND wo_id = '000102209424' AND shift_start_local = '2019-06-06 08:00:00' ORDER BY  row_id DESC
 
 SELECT * FROM item_prod WHERE ent_id IN (140) AND good_prod = 1 AND shift_start_local = '2019-04-24 08:00:00' AND wo_id = '000102143913' ORDER BY  row_id DESC
 
@@ -206,4 +206,11 @@ SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = '
 -- ===============================================================================================================================================================================
 
 -- Check Heart Beat for MES Service
-SELECT DATEDIFF(SECOND, last_heartbeat, GETUTCDATE()) HeartBeatDiff from sessn where client_type = 53
+SELECT DATEDIFF(SECOND, last_heartbeat, GETUTCDATE()) HeartBeatDiff FROM sessn WHERE client_type = 53
+
+-- Mold Master Data
+SELECT * FROM OPERA_mold_master_data
+
+-- ===============================================================================================================================================================================
+
+SELECT * FROM dx_log WHERE sched_id = '02_Bill_Of_Material_Components' ORDER BY logged_at DESC
