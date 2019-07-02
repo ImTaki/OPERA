@@ -24,17 +24,17 @@ USE MESDB
 
 -- UPDATE ngsfr_subr_bom SET intf_process_status = 0 WHERE intf_process_status = -1
 
-SELECT * FROM item WHERE item_id = 'C0000007310' -- BETWEEN 'C0000007312' AND 'C0000007315'
+SELECT * FROM item WHERE item_id = 'CN07817A' -- BETWEEN 'C0000007312' AND 'C0000007315'
 
 SELECT * FROM ngsfr_subr_material_master WHERE matl_number = 'C0000007310'
 
 SELECT * FROM ngsfr_subr_material_master WHERE intf_process_status = 0
 
-SELECT * FROM bom_item WHERE parent_item_id = 'C0000007313'
+SELECT * FROM bom_item WHERE parent_item_id = 'C0000000001'
 
 SELECT DISTINCT item_id FROM bom_item bi WHERE bi.item_id LIKE 'C%' and bi.item_id NOT IN (SELECT DISTINCT parent_item_id FROM bom_item)
 
-SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000007309'
+SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000005079'
 
 -- Get All SKUs don't have BOM item
 SELECT DISTINCT bom_item FROM ngsfr_subr_bom sb WHERE sb.bom_item LIKE 'C%' and sb.bom_item NOT IN (SELECT DISTINCT bom_parent_item FROM ngsfr_subr_bom)
@@ -53,11 +53,11 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 -- Work Order Section
 
--- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-05-25 00:00:00'
+-- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-06-07 00:00:00'
 
-SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-05-25 00:00:00' ORDER BY wo_id
+SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-06-07 00:00:00' ORDER BY wo_id
 
-SELECT * FROM wo WHERE wo_id IN ('00010223936')
+SELECT * FROM wo WHERE wo_id IN ('000102213936')
 
 SELECT * FROM wo WHERE wo_id LIKE '%4446' AND item_id LIKE '%6611'
 
@@ -90,7 +90,7 @@ SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
-SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('H2FCS604') ) AND good_prod = 1 AND wo_id = '000102209424' AND shift_start_local = '2019-06-06 08:00:00' ORDER BY  row_id DESC
+SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0201_END') ) AND good_prod = 0 AND wo_id = '000102243774' AND shift_start_local = '2019-06-27 08:00:00' ORDER BY  row_id DESC
 
 SELECT * FROM item_prod WHERE ent_id IN (140) AND good_prod = 1 AND shift_start_local = '2019-04-24 08:00:00' AND wo_id = '000102143913' ORDER BY  row_id DESC
 
@@ -186,7 +186,7 @@ SELECT * FROM util_reas_grp
 
 SELECT b.reas_grp_desc,reas_desc, category2 FROM util_reas a, util_reas_grp b WHERE a.reas_grp_id IN (337, 338, 339, 340, 341) AND a.reas_grp_id = b.reas_grp_id
 
-SELECT  * FROM util_reas WHERE state_cd = 0
+SELECT  * FROM util_reas
 
 -- Badge Reader Configuration
 SELECT * FROM OPERA_node_alias
@@ -199,7 +199,38 @@ SELECT * FROM data_log_value WHERE grp_id = 67
 
 SELECT shift_start_local [Shift], raw_reas_cd [Reason], duration/3600.00 [Hour], category2 [DESC]FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS952') AND shift_start_local = '2019-03-28 08:00:00' ORDER BY event_time_local
 
-SELECT * FROM util_log WHERE ent_id = (SELECT ent_id FROM ent WHERE ent_name = 'H2FCS604') AND shift_start_local = '2019-05-04 08:00:00' ORDER BY event_time_local
+SELECT * FROM util_log WHERE ent_id IN (SELECT ent_id FROM ent WHERE ent_name LIKE 'T2BH%') AND shift_start_local = '2019-06-25 08:00:00.00' AND category3 = 'Unplanned' AND duration/60 <= 3
+
+SELECT ent_name [Entity Name], SUM(u.duration)/60 [Duration] FROM util_log u, ent e WHERE u.ent_id = e.ent_id AND u.ent_id IN (SELECT ent_id FROM ent WHERE ent_name LIKE 'T2BH%') AND shift_start_local = '2019-07-02 08:00:00.00' AND raw_reas_cd = 'Unknown' AND duration/60.0 <=3 GROUP BY ent_name ORDER BY Duration DESC
+
+-- Get Util Log details
+SELECT shift_start_local [Shift], ent_name [Entity Name],raw_reas_cd [Raw Reason], category2 [Description], u.duration/60.0 [Duration]
+FROM util_log u, ent e
+WHERE u.ent_id = e.ent_id AND u.ent_id IN (SELECT ent_id FROM ent WHERE ent_name LIKE 'T2BH%')
+AND shift_start_local IN('2019-07-01 08:00:00.00', '2019-07-01 16:00:00.00', '2019-07-02 00:00:00.00') AND raw_reas_cd = 'Unknown' AND duration/60 <=3
+ORDER BY Shift, Duration DESC
+
+-- Get All HSL Now in Down State and Return Down Duration
+
+WITH summary AS (
+	SELECT u.ent_id, u.duration, u.shift_start_local, u.category3, u.log_id, ROW_NUMBER() OVER(PARTITION BY u.ent_id ORDER BY u.log_id DESC) [Rank] FROM util_log u
+	WHERE u.shift_start_local = '2019-06-26 08:00:00' AND
+	u.ent_id IN (SELECT ent_id FROM ent WHERE ent_name LIKE 'T2BH%TB1' OR ent_name LIKE 'T2BH%TB2' OR ent_name LIKE 'T2BH%END')
+)
+SELECT e.ent_name [Entity Name], s.duration/60 [Duration], s.log_id [Log ID]
+FROM summary s, ent e WHERE s.ent_id = e.ent_id
+AND s.category3 = 'Unplanned' AND s.Rank = 1 ORDER BY Duration DESC
+
+-- Get All FCS Now in Down State and Return Down Duration
+
+WITH summary AS (
+	SELECT u.ent_id, u.duration, u.shift_start_local, u.category3, u.log_id, ROW_NUMBER() OVER(PARTITION BY u.ent_id ORDER BY u.log_id DESC) [Rank] FROM util_log u
+	WHERE u.shift_start_local = '2019-06-26 08:00:00' AND
+	u.ent_id IN (SELECT ent_id FROM ent WHERE ent_name LIKE 'H2FCS%FCS')
+)
+SELECT e.ent_name [Entity Name], s.duration/60 [Duration], s.log_id [Log ID]
+FROM summary s, ent e WHERE s.ent_id = e.ent_id
+AND s.category3 = 'Unplanned' AND s.Rank = 1 ORDER BY Duration DESC
 
 -- SELECT * FROM job_util_log_link;
 
