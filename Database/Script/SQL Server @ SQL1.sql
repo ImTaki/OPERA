@@ -30,11 +30,11 @@ SELECT * FROM ngsfr_subr_material_master WHERE matl_number = 'C0000007310'
 
 SELECT * FROM ngsfr_subr_material_master WHERE intf_process_status = 0
 
-SELECT * FROM bom_item WHERE parent_item_id = 'C0000000001'
+SELECT * FROM bom_item WHERE parent_item_id = 'C0000007308'
 
 SELECT DISTINCT item_id FROM bom_item bi WHERE bi.item_id LIKE 'C%' and bi.item_id NOT IN (SELECT DISTINCT parent_item_id FROM bom_item)
 
-SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000005079'
+SELECT * FROM ngsfr_subr_bom WHERE bom_parent_item = 'C0000007308'
 
 -- Get All SKUs don't have BOM item
 SELECT DISTINCT bom_item FROM ngsfr_subr_bom sb WHERE sb.bom_item LIKE 'C%' and sb.bom_item NOT IN (SELECT DISTINCT bom_parent_item FROM ngsfr_subr_bom)
@@ -53,11 +53,11 @@ SELECT * FROM NGSFR_MII_MATERIAL_LIST WHERE MATNR = 'C0000007312'
 
 -- Work Order Section
 
--- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-06-07 00:00:00'
+-- UPDATE wo SET state_cd = 3 WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-07-12 00:00:00'
 
-SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-06-07 00:00:00' ORDER BY wo_id
+SELECT * FROM wo WHERE process_id LIKE '[T,H]2[BH,FCS]%' AND state_cd = 2 AND req_finish_time_local < '2019-07-12 00:00:00' ORDER BY wo_id
 
-SELECT * FROM wo WHERE wo_id IN ('000102213936')
+SELECT * FROM wo WHERE wo_id IN ('000102258440')
 
 SELECT * FROM wo WHERE wo_id LIKE '%4446' AND item_id LIKE '%6611'
 
@@ -90,7 +90,7 @@ SELECT * FROM item_prod WHERE wo_id = '000102148602'
 
 SELECT * FROM item_prod WHERE item_id = 'C0000007314'
 
-SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0201_END') ) AND good_prod = 0 AND wo_id = '000102243774' AND shift_start_local = '2019-06-27 08:00:00' ORDER BY  row_id DESC
+SELECT * FROM item_prod WHERE ent_id IN ( SELECT ent_id FROM ent WHERE ent_name IN ('T2BH0207_END') ) AND good_prod = 0 AND wo_id = '000102274893' AND shift_start_local = '2019-07-17 00:00:00' ORDER BY  row_id DESC
 
 SELECT * FROM item_prod WHERE ent_id IN (140) AND good_prod = 1 AND shift_start_local = '2019-04-24 08:00:00' AND wo_id = '000102143913' ORDER BY  row_id DESC
 
@@ -164,7 +164,7 @@ SELECT
 FROM
   OPERA_badge_credentials
 WHERE
-  ACTIVE = 1  -- AND Username = 'Cuicui Gen'
+  ACTIVE = 1 AND Username = 'Yan W Wang'
 
 SELECT * FROM user_name WHERE spare1 IN (SELECT spare1 FROM user_name GROUP BY spare1 HAVING COUNT(spare1) > 1)
 
